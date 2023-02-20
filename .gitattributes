@@ -1,1 +1,2 @@
+'QPP_Methods/*' filter=lfs diff=lfs merge=lfs -text
 *.joblib filter=lfs diff=lfs merge=lfs -text
