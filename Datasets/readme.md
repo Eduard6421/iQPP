@@ -4,22 +4,28 @@
 This readme contains information about the ground truth file structures, instructions for downloading the datasets and preparing it for the retrieval methods.
 The dataset follows format of the [Revisted versions of ROxford5K and RParis6k](http://cmp.felk.cvut.cz/revisitop/).
 
-The schema format:
-
+## Schema Format
+```
 {
-    'gnd' : {
-        'bbx': [number]  | None,
-        'easy': [number],
-        'medium': [number] | None,
-        'hard': [number] | None
-        'junk' : [number] | None
+    'gnd' : Array<{
+        'bbx': [x_min,y_min,x_max,y_max]  | None,
+        'easy': Array<number>,
+        'medium': Array<number> | None,
+        'hard': Array<number> | None
+        'junk' : Array<number> | None
 
-    }[],
-    'imlist': string[],
-    'qimlist': string[]
+    }>,
+    'imlist': Array<string>,
+    'qimlist': Array<string>
 }
+```
 
-qimlist contains the name of the images that are used for the CBIR.
-imlist constiins the name of the images that can be found in the image database.
-gnd contains both bounding boxes for the images (some queries however do not make use of bounding boxes). the bounding boxes if present respect the following format: [x_min,y_min,x_max,y_max].
-gnd also contains three difficulty tracks (easy, medium, hard). However these might not always be populated (especially in the case of PASCAL VOC 2012 and Caltech101).  junk represents images that in the  difficulty tracks proposed by Radenovic et al. were excluded. In our approach we mark them as negative rather than having different database images for each search.
+## Description
+
+
+1. qimlist contains the name of the images that are used for the CBIR. 
+2. imlist contains the name of the images that can be found in the image database.
+3. gnd contains:
+   1. both bounding boxes for the images (some queries however do not make use of bounding boxes).
+   2. three difficulty tracks (easy, medium, hard) which is populated with the index of the images in imlist that are positive matches for the query. The tracks easy and medium are not populated for the case of PASCAL VOC and Caltech-101.
+   3. junk represents images that in certain queries Radenovic et al. propose to be excluded from the database. In our approach however we mark them as negative rather than changing the number of images in the database for each query.
