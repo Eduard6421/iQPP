@@ -1,38 +1,38 @@
-# iQPP
+# iQPP: Image Query Performance Prediction Benchmark (Official Repo)
 
-We release our code as an open source, under the MIT license. However, the retrieval methods and the datasets each have their own open source license.
+We propose the first benchmark for image query performance prediction (iQPP). First, we establish a set of four data sets (PASCAL VOC 2012, Caltech-101, ROxford5k and RParis6k) and estimate the ground-truth difficulty of each query as the average precision or the precision@𝑘, using two state-of-the-art image retrieval models. Next, we propose and evaluate twelve pre-retrieval and post-retrieval query performance predictors. We release our code as an open source, under the MIT license. However, the retrieval methods and the datasets each have their own open source license.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
-## Retrieval methods:
+## Retrieval methods
 
-1. [Radenovic et al. [TPAMI 2019]](https://github.com/filipradenovic/cnnimageretrieval-pytorch); - MIT License
-2. [Revaud et al. [ICCV 2019]](https://github.com/naver/deep-image-retrieval); BSD-3 Clause license
+1. [Radenovic et al. [TPAMI 2019]](https://github.com/filipradenovic/cnnimageretrieval-pytorch) - released under MIT License.
+2. [Revaud et al. [ICCV 2019]](https://github.com/naver/deep-image-retrieval) - released under BSD-3 Clause license.
 
-## Datasets:
+## Datasets
 
 1. [PASCAL VOC 2012 (Download)](http://host.robots.ox.ac.uk/pascal/VOC/) - [Flickr terms of use](https://www.flickr.com/help/terms)
-2. [Caltech-101](https://data.caltech.edu/records/mzrjq-6wc02) - [Caltech Data terms of use](https://library.caltech.edu/search/caltechdata#terms)
+2. [Caltech-101 (Download)](https://data.caltech.edu/records/mzrjq-6wc02) - [Caltech Data terms of use](https://library.caltech.edu/search/caltechdata#terms)
 3. [ROxford5k (Download)](http://cmp.felk.cvut.cz/revisitop/) - [Flickr terms of use](https://www.flickr.com/help/terms) and [Dataset Terms of Access](https://www.robots.ox.ac.uk/~vgg/terms/dataset-group-2-access.html)
 4. [RParis6k (Download)](http://cmp.felk.cvut.cz/revisitop/) - [Flickr terms of use](https://www.flickr.com/help/terms) and [Dataset Terms of Access](https://www.robots.ox.ac.uk/~vgg/terms/dataset-group-2-access.html)
 
 ---
 
-## 📝 Table of Contents
+## 📝 Table of Contents <a name = "tabel_of_contents"></a>
 
 - [iQPP](#iqpp)
-  - [Retrieval methods:](#retrieval-methods)
-  - [Datasets:](#datasets)
+  - [Retrieval methods](#retrieval-methods)
+  - [Datasets](#datasets)
   - [📝 Table of Contents](#table-of-contents)
-  - [About](#about-)
-  - [Getting Started](#getting-started)
-    - [Installing Prerequisites](#installing-prerequisites)
+  - [About](#about)
+  - [Getting Started](#getting_started)
+    - [Installing Prerequisites](#prerequisites)
   - [Usage](#usage-)
-    - [Radenovic et al. [TPAMI 2019]](#radenovic-et-al)
-    - [Revaud et al. [ICCV 2019]](#revaud-et-al)
+    - [Radenovic et al. [TPAMI 2019]](#radenovic)
+    - [Revaud et al. [ICCV 2019]](#revaud)
   - [Citation](#citation)
-  - [⛏️ Developed with](#developed-with)
-  - [🎉 Acknowledgements](#acknowledgements)
+  - [⛏️ Developed with](#developed_with)
+  - [🎉 Acknowledgements](#acknowledgement)
 
 ## About <a name = "about"></a>
 
@@ -52,7 +52,7 @@ The project is structured as following:
 
 ## Getting Started <a name = "getting_started"></a>
 
-### Installing Prerequisites
+### Installing Prerequisites <a name = "prerequisites"></a>
 
 Prerequisites can be seen in the requirements.txt text file.
 However I would like to point out that Revaud et al. retrieval model cannot be run on an newer scikit-learn version. As per the [issue](https://github.com/naver/deep-image-retrieval/issues/27) the authors recommend the version 0.20.2.
@@ -62,64 +62,90 @@ However I would like to point out that Revaud et al. retrieval model cannot be r
 Run the following command in order to install the prerequisites:
 
 ```
-  pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Usage <a name="usage"></a>
 
 There are multiple steps involved in running the benchmark. In order to replicate our results you will have to follow the next steps:
-1. Download the datasets from the provided links;
-2. Copy all the images in the respective Dataset folder under the "jpg" folder. For example in case of ROxford5K you must copy the images in Datasets/ROxford5k/jpg
-3. Run the retrieval methodsNote. The methods do not have a unified interface and us such require method specific arguments and changes. All of these will be described in detail. 
+1. Download the datasets from the provided links.
+2. Copy all the images in the corresponding dataset folder under the "jpg" subfolder. For example, in the case of ROxford5K you must copy the images in "Datasets/ROxford5k/jpg".
+3. Run the retrieval methods. The methods do not have a unified interface, and as such, require method specific arguments and changes. All of these are  described in detail below. 
 
-  ### Radenovic et al. [TPAMI 2019]
+  ### For Radenovic et al. [TPAMI 2019] <a name="radenovic"></a>
   
-  3.1.2 Decide on which dataset you want to run the retrieval model. Available options are:
+  3.1.2. Decide on which dataset you want to run the retrieval model. Available options are:
       
-    ```roxford5k, rparis6k, pascalvoc_700_medium,pascalvoc_700_medium_train,caltech101_700,caltech101_700_train, pascalvoc_700_medium_drift_cnn, pascalvoc_700_no_bbx_drift_cnn, caltech101_700_drift_cnn```
+```
+roxford5k
+roxford5k_drift_cnn
+rparis6k
+rparis6k_drift_cnn
+pascalvoc_700
+pascalvoc_700_train
+pascalvoc_700_drift_cnn
+caltech101_700
+caltech101_700_train
+caltech101_700_drift_cnn
+```
       
   The methods marked as drift denote the queries were identified during the adapted query drift technique.
 
-  The embeddings of the query and dataset images will be saved in Embeddings/CNN_Image_Retrieval/
+  The embeddings of the query and dataset images will be saved in "Embeddings/CNN_Image_Retrieval/".
 
-  The top results wil be saved in the folder Results/
+  The top results will be saved in the folder "Results/".
         
-  3.1.3 Select the metric you want to show (p@100 or ap) by changing which value you want to be printed;
-
-    in Retrieval_Methods\Radenovic-et-al\radenovic-et-al\cirtorch\utils\evaluate.py comment one of the lines 135/137. by default AP is selected.
+  3.1.3. Select the metric you want to show (p@100 or ap) by changing which value you want to be printed. In "Retrieval_Methods\Radenovic-et-al\radenovic-et-al\cirtorch\utils\evaluate.py" comment one of the lines 135/137. By default, AP is selected.
             
-  3.1.4 Run the model with the following instructions:  
+  3.1.4. Run the model with the following instructions:  
 
-      ```python -m cirtorch.examples.test --gpu-id "0" --network-path "retrievalSfM120k-resnet101-gem" --datasets "caltech101_700" \ --whitening "retrieval-SfM-120k" --multiscale "[1, 1/2**(1/2), 1/2]"```
+```
+python -m cirtorch.examples.test --gpu-id "0" --network-path "retrievalSfM120k-resnet101-gem" --datasets "caltech101_700" \ --whitening "retrieval-SfM-120k" --multiscale "[1, 1/2**(1/2), 1/2]"
+```
   
-  ### Revaud et al. [ICCV 2019]
+  ### For Revaud et al. [ICCV 2019] <a name="revaud"></a>
 
-  3.2.1 Decide on which dataset you want to run the retrieval model. Available options are : `ROxford5K,ROxford5K_Drift, RParis6K,RParis6K_Drift,PascalVOC_700_Medium,         
-              PascalVOC_700_Medium_Train,PascalVOC_700_Medium_Drift,Caltech101_700, Caltech101_700_Train,Caltech101_700_Drift`
+  3.2.1. Decide on which dataset you want to run the retrieval model. Available options are:
+  
+```
+ROxford5K
+ROxford5K_Drift
+RParis6K
+RParis6K_Drift
+PascalVOC_700        
+PascalVOC_700_Train
+PascalVOC_700_Drift
+Caltech101_700
+Caltech101_700_Train
+Caltech101_700_Drift
+```
+ 
+  3.2.2. Select which metric you want to use. In "Retrieval_Methods\Revaud-et-al\deep-image-retrieval\dirtorch\test_dir.py", call either 
+    ```eval_query_AP``` or ```eval_query_top_k``` by commenting the specific line (182 or 183, depending on your choice).
 
-  3.2.2 Select which metric you want to use by changing the metric;
-
-    in Retrieval_Methods\Revaud-et-al\deep-image-retrieval\dirtorch\test_dir.py call either 
-    ```eval_query_AP``` or ```eval_query_top_k``` by commenting the specific line (182 or 183 depending on your preference.)
-
-  3.2.3 Run the model with the following command:
-    ```python -m dirtorch.test_dir --dataset 'Caltech101_700' --checkpoint '/notebooks/deep-image-retrieval/Resnet101-AP-GeM.pt'```
+  3.2.3. Run the model with the following command:
+  
+```
+python -m dirtorch.test_dir --dataset 'Caltech101_700' --checkpoint '/notebooks/deep-image-retrieval/Resnet101-AP-GeM.pt'
+```
     
-4. Run the QPP models 
+4. Run the QPP models. 
 
-5. Compute the correlations
+5. Compute the correlations.
 
 ## ⛏️ Developed with <a name = "developed_with"></a>
-- [Pytorch](https://pytorch.org/) - Deel Learning Library
+- [Pytorch](https://pytorch.org/) - Deep Learning Library.
 
 ## Citation <a name="citation"></a>
 
-      ```@article{poesina2023iqpp,
-  title={iQPP: A Benchmark for Image Query Performance Prediction},
-  author={Poesina, Eduard and Ionescu, Radu Tudor and Mothe, Josiane},
-  journal={arXiv preprint arXiv:2302.10126},
-  year={2023}
-}```
+```
+@article{poesina2023iqpp,
+   title={iQPP: A Benchmark for Image Query Performance Prediction},
+   author={Poesina, Eduard and Ionescu, Radu Tudor and Mothe, Josiane},
+   journal={arXiv preprint arXiv:2302.10126},
+   year={2023}
+}
+```
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
