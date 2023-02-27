@@ -20,19 +20,21 @@ We propose the first benchmark for image query performance prediction (iQPP). Fi
 
 ## 📝 Table of Contents <a name = "tabel_of_contents"></a>
 
-- [iQPP](#iqpp)
+- [iQPP: Image Query Performance Prediction Benchmark (Official Repo)](#iqpp-image-query-performance-prediction-benchmark-official-repo)
   - [Retrieval methods](#retrieval-methods)
   - [Datasets](#datasets)
-  - [📝 Table of Contents](#table-of-contents)
-  - [About](#about)
-  - [Getting Started](#getting_started)
-    - [Installing Prerequisites](#prerequisites)
-  - [Usage](#usage-)
-    - [Radenovic et al. [TPAMI 2019]](#radenovic)
-    - [Revaud et al. [ICCV 2019]](#revaud)
-  - [Citation](#citation)
-  - [⛏️ Developed with](#developed_with)
-  - [🎉 Acknowledgements](#acknowledgement)
+  - [📝 Table of Contents ](#-table-of-contents-)
+  - [About ](#about-)
+  - [Getting Started ](#getting-started-)
+    - [Installing Prerequisites ](#installing-prerequisites-)
+  - [Usage ](#usage-)
+    - [For Radenovic et al. \[TPAMI 2019\] ](#for-radenovic-et-al-tpami-2019-)
+    - [For Revaud et al. \[ICCV 2019\] ](#for-revaud-et-al-iccv-2019-)
+    - [Run the QPP models.](#run-the-qpp-models)
+    - [Compute the correlations.](#compute-the-correlations)
+  - [⛏️ Developed with ](#️-developed-with-)
+  - [Citation ](#citation-)
+  - [🎉 Acknowledgements ](#-acknowledgements-)
 
 ## About <a name = "about"></a>
 
@@ -128,10 +130,32 @@ Caltech101_700_Drift
 ```
 python -m dirtorch.test_dir --dataset 'Caltech101_700' --checkpoint '/notebooks/deep-image-retrieval/Resnet101-AP-GeM.pt'
 ```
-    
-4. Run the QPP models. 
+### Run the QPP models. 
 
-5. Compute the correlations.
+You must follow the next steps in order to run the query performance prediction methods:\
+4.1. cd QPP_Methods/Score_Variance
+
+4.2. Run the model with the following command:
+```
+python3 main.py --dataset roxford5k --method cnnimageretrieval --metric ap
+```
+
+Available options for methods are:
+
+```
+cnnimageretrieval
+deepretrieval
+```
+Available options for metrics are:
+```
+ap
+p@100
+```
+
+### Compute the correlations.
+
+
+
 
 ## ⛏️ Developed with <a name = "developed_with"></a>
 - [Pytorch](https://pytorch.org/) - Deep Learning Library.
