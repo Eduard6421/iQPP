@@ -163,10 +163,10 @@ p@100
 ## Citation <a name="citation"></a>
 
 ```
-@article{poesina2023iqpp,
+@inproceedings{poesina2023iqpp,
    title={iQPP: A Benchmark for Image Query Performance Prediction},
    author={Poesina, Eduard and Ionescu, Radu Tudor and Mothe, Josiane},
-   journal={arXiv preprint arXiv:2302.10126},
+   booktitle={Proceedings of SIGIR},
    year={2023}
 }
 ```
