@@ -1,4 +1,4 @@
-# iQPP: Image Query Performance Prediction Benchmark (Official Repo)
+# iQPP: Image Query Performance Prediction Benchmark (Official Repo, Accepted at SIGIR 2023)
 
 We propose the first benchmark for image query performance prediction (iQPP). First, we establish a set of four data sets (PASCAL VOC 2012, Caltech-101, ROxford5k and RParis6k) and estimate the ground-truth difficulty of each query as the average precision or the precision@𝑘, using two state-of-the-art image retrieval models. Next, we propose and evaluate twelve pre-retrieval and post-retrieval query performance predictors. We release our code as an open source, under the MIT license. However, the retrieval methods and the datasets each have their own open source license.
 
