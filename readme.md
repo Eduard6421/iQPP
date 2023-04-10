@@ -41,7 +41,7 @@ We propose the first benchmark for image query performance prediction (iQPP). Fi
 This repository holds the source code four our paper "Image Query Performance Prediction". It holds the label generation scripts, modifications to the retrieval models and implementations of the studied models.
 Due to the naming of the retrieval model git repositories, you  will often see the retrieval methods described as "cnnimageretrieval" and "deepretrieval". These are in fact the repository names of the work of Radenovic et al. , respectively Revaud et al.
 
-The project is structured as following:
+The project is structured as follows:
 
      IQPP/
           Datasets/ (contains an extensive description of the dataset format and a short tutorial in order to download the content and prepare it for CBIR)
